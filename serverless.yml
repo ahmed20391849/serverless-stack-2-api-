@@ -119,14 +119,14 @@ functions:
 # Create our resources with separate CloudFormation templates
 # Create our resources with separate CloudFormation templates
 # Create our resources with separate CloudFormation templates
- billing:
+  billing:
     handler: billing.main
-     events:
-       - http:
-           path: billing
-           method: post
-           cors: true
-           authorizer: aws_iam
+    events:
+      - http:
+          path: billing
+          method: post
+          cors: true
+          authorizer: aws_iam  
 
 resources:
   # API Gateway Errors
