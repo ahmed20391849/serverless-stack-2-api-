@@ -5,8 +5,7 @@ import { success, failure } from "./libs/response-lib";
 export async function main(event, context) {
   const data = JSON.parse(event.body);
   const params = {
-    TableName: "notes",
-    Item: {
+    TableName: process.env.tableName,    Item: {
       userId: event.requestContext.identity.cognitoIdentityId,
       noteId: uuid.v1(),
       content: data.content,
@@ -14,6 +13,10 @@ export async function main(event, context) {
       createdAt: Date.now()
     }
   };
+
+  
+  environment:
+    tableName: ${self:custom.tableName}
 
   try {
     await dynamoDbLib.call("put", params);
