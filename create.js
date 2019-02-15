@@ -13,11 +13,7 @@ export async function main(event, context) {
       createdAt: Date.now()
     }
   };
-
   
-  environment:
-    tableName: ${self:custom.tableName}
-
   try {
     await dynamoDbLib.call("put", params);
     return success(params.Item);
